@@ -1,0 +1,84 @@
+asyncapi: 2.3.0
+info:
+  title: Trivia Del Genio AsyncAPI
+  version: 1.0.0
+  description: Trivia Room AsyncAPI
+
+servers:
+  test:
+    url: wss://api.trivia.dataandgame.com
+    protocol: Colyseus(wss)
+
+channels:
+  #trivia
+  trivia/startTrivia:
+    publish:
+      message:
+        $ref: '#/components/messages/startTriviaDto'
+  trivia/triviaUserJoined:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaUserJoinedDto'
+  trivia/triviaUserDisconnected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaUserDisconnectedDto'
+  trivia/triviaCategoriesRandomized:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaCategoriesRandomizedDto'
+  trivia/triviaStarted:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaStartedDto'
+        
+components:
+  messages:
+    #trivia
+    startTriviaDto:
+      payload:
+        user:
+          type:
+            object:
+              properties:
+                id:
+                  type: string
+                Authorization:
+                  type: string
+    triviaUserJoinedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            description: Trivia User Joined
+            properties:
+              id:
+                type: string
+              enterprise:
+                type: string
+    triviaUserDisconnectedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            description: Trivia User Disconnected
+            properties:
+              id:
+                type: string
+    triviaCategoriesRandomizedDto:
+      payload:
+        categories:
+        type: array
+        items:
+          type: string
+        description: Trivia Categories Randomized
+    triviaStartedDto:
+      payload:
+        categories:
+          trivia:
+            type: object
+            properties:
+              status:
+                type: string
