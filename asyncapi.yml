@@ -10,6 +10,8 @@ servers:
     protocol: Colyseus(wss)
 
 channels:
+  tag:
+    description: Trivia del Genio AsyncAPI
   #trivia
   #publish
   trivia/createTrivia:
