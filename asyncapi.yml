@@ -87,6 +87,82 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/triviaUserClaimedPowerupDto'
+  #classification
+  #publish
+  classification/createClassification:
+    publish:
+      message:
+        $ref: '#/components/messages/createClassificationDto'
+  classification/joinClassification:
+    publish:
+      message:
+        $ref: '#/components/messages/joinClassificationDto'
+  classification/startClassification:
+    publish:
+      message:
+        $ref: '#/components/messages/startClassificationDto'
+  classification/voteClassificationCategory:
+    publish:
+      message:
+        $ref: '#/components/messages/voteClassificationCategoryDto'
+  classification/finishFirstClassificationRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishFirstClassificationRoundDto'
+  classification/finishSecondClassificationRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishSecondClassificationRoundDto'
+  classification/finishThirdClassificationRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishThirdClassificationRoundDto'
+  classification/claimClassificationPowerup:
+    publish:
+      message:
+        $ref: '#/components/messages/claimClassificationPowerupDto'
+  #subscribe
+  classification/classificationUserJoined:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationUserJoinedDto'
+  classification/classificationUserDisconnected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationUserDisconnectedDto'
+  classification/classificationCategoriesRandomized:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationCategoriesRandomizedDto'
+  classification/classificationStarted:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationStartedDto'
+  classification/classificationCategorySelected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationCategorySelectedDto'
+  classification/classificationUserFinishedFirstRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationUserFinishedFirstRoundDto'
+  classification/classificationUserFinishedSecondRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationUserFinishedSecondRoundDto'
+  classification/classificationUserFinishedThirdRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationUserFinishedThirdRoundDto'
+  classification/classificationConnectedUsersNumberUpdated:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationConnectedUsersNumberUpdatedDto'
+  classification/classificationUserClaimedPowerup:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationUserClaimedPowerupDto'
+     
         
 components:
   messages:
@@ -277,3 +353,191 @@ components:
                 type: string
               powerup:
                 type: number
+    #classification
+    #publish
+    createClassificationDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          classification:
+            type: object
+            properties:
+              id:
+                type: string
+              numberLimitUsers:
+                type: number
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    joinClassificationDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    startClassificationDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    voteClassificationCategoryDto:
+      payload:
+        type: object
+        properties:
+          category:
+            type: string
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    finishFirstClassificationRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    finishSecondClassificationRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishThirdClassificationRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    claimClassificationPowerupDto:
+      payload:
+        type: object
+        properties:
+          powerup:
+            type: number
+    #suscribe
+    classificationUserJoinedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              enterprise:
+                type: string
+    classificationUserDisconnectedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    classificationCategoriesRandomizedDto:
+      payload:
+        type: object
+        properties:
+          categories:
+            type: array
+            items:
+              type: 
+                string
+    classificationStartedDto:
+      payload:
+        type: object
+        properties:
+          classification:
+            type: object
+            properties:
+              status:
+                type: string
+    classificationCategorySelectedDto:
+      payload:
+        type: object
+        properties:
+          classification:
+            type: object
+            properties:
+              category:
+                type: string
+    classificationUserFinishedFirstRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    classificationUserFinishedSecondRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    classificationUserFinishedThirdRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    classificationConnectedUsersNumberUpdatedDto:
+      payload:
+        type: object
+        properties:
+          classification:
+            type: object
+            properties:
+              connectedUsersNumber:
+                type: number
+    classificationUserClaimedPowerupDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              powerup:
+                type: number
+
