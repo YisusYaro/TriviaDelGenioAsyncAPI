@@ -11,10 +11,40 @@ servers:
 
 channels:
   #trivia
+  #publish
+  trivia/createTrivia:
+    publish:
+      message:
+        $ref: '#/components/messages/createTriviaDto'
+  trivia/joinTrivia:
+    publish:
+      message:
+        $ref: '#/components/messages/joinTriviaDto'
   trivia/startTrivia:
     publish:
       message:
         $ref: '#/components/messages/startTriviaDto'
+  trivia/voteTriviaCategory:
+    publish:
+      message:
+        $ref: '#/components/messages/voteTriviaCategoryDto'
+  trivia/finishFirstTriviaRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishFirstTriviaRoundDto'
+  trivia/finishSecondTriviaRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishSecondTriviaRoundDto'
+  trivia/finishThirdTriviaRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishThirdTriviaRoundDto'
+  trivia/claimTriviaPowerup:
+    publish:
+      message:
+        $ref: '#/components/messages/claimTriviaPowerupDto'
+  #subscribe
   trivia/triviaUserJoined:
     subscribe:
       message:
@@ -31,29 +61,126 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/triviaStartedDto'
+  trivia/triviaCategorySelected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaCategorySelectedDto'
+  trivia/triviaUserFinishedFirstRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaUserFinishedFirstRoundDto'
+  trivia/triviaUserFinishedSecondRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaUserFinishedSecondRoundDto'
+  trivia/triviaUserFinishedThirdRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaUserFinishedThirdRoundDto'
+  trivia/triviaConnectedUsersNumberUpdated:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaConnectedUsersNumberUpdatedDto'
+  trivia/triviaUserClaimedPowerup:
+    subscribe:
+      message:
+        $ref: '#/components/messages/triviaUserClaimedPowerupDto'
         
 components:
   messages:
     #trivia
+    #publish
+    createTriviaDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          trivia:
+            type: object
+            properties:
+              id:
+                type: string
+              numberLimitUsers:
+                type: number
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    joinTriviaDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
     startTriviaDto:
       payload:
         type: object
         properties:
           user:
             type: object
-            description: Start trivia
             properties:
               id:
                 type: string
               Authorization:
                 type: string
+    voteTriviaCategoryDto:
+      payload:
+        type: object
+        properties:
+          category:
+            type: string
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    finishFirstTriviaRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    finishSecondTriviaRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishThirdTriviaRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    claimTriviaPowerupDto:
+      payload:
+        type: object
+        properties:
+          powerup:
+            type: number
+    #suscribe
     triviaUserJoinedDto:
       payload:
         type: object
         properties:
           user:
             type: object
-            description: Trivia User Joined
             properties:
               id:
                 type: string
@@ -65,22 +192,86 @@ components:
         properties:
           user:
             type: object
-            description: Trivia User Disconnected
             properties:
               id:
                 type: string
     triviaCategoriesRandomizedDto:
       payload:
-        categories:
-        type: array
-        items:
-          type: string
-        description: Trivia Categories Randomized
+        type: object
+        properties:
+          categories:
+            type: array
+            items:
+              type: 
+                string
     triviaStartedDto:
       payload:
-        categories:
+        type: object
+        properties:
           trivia:
             type: object
             properties:
               status:
                 type: string
+    triviaCategorySelectedDto:
+      payload:
+        type: object
+        properties:
+          trivia:
+            type: object
+            properties:
+              category:
+                type: string
+    triviaUserFinishedFirstRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    triviaUserFinishedSecondRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    triviaUserFinishedThirdRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    triviaConnectedUsersNumberUpdatedDto:
+      payload:
+        type: object
+        properties:
+          trivia:
+            type: object
+            properties:
+              connectedUsersNumber:
+                type: number
+    triviaUserClaimedPowerupDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              powerup:
+                type: number
