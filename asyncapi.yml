@@ -117,6 +117,10 @@ channels:
     publish:
       message:
         $ref: '#/components/messages/finishThirdClassificationRoundDto'
+  classification/finishFourthClassificationRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishFourthClassificationRoundDto'
   classification/claimClassificationPowerup:
     publish:
       message:
@@ -154,6 +158,10 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/classificationUserFinishedThirdRoundDto'
+  classification/classificationUserFinishedFourthRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/classificationUserFinishedFourthRoundDto'
   classification/classificationConnectedUsersNumberUpdated:
     subscribe:
       message:
@@ -241,6 +249,12 @@ components:
           result:
             type: number
     finishThirdTriviaRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishFourthTriviaRoundDto:
       payload:
         type: object
         properties:
@@ -433,6 +447,12 @@ components:
         properties:
           result:
             type: number
+    finishFourthClassificationRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
     claimClassificationPowerupDto:
       payload:
         type: object
@@ -510,6 +530,17 @@ components:
               result:
                 type: number
     classificationUserFinishedThirdRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    classificationUserFinishedFourthRoundDto:
       payload:
         type: object
         properties:
