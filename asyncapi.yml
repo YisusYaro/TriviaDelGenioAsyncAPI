@@ -211,37 +211,19 @@ components:
                 type: string
     startTriviaDto:
       payload:
-        type: object
-        properties:
-          user:
-            type: object
-            properties:
-              id:
-                type: string
-              Authorization:
-                type: string
+        type: object        
     voteTriviaCategoryDto:
       payload:
         type: object
         properties:
           category:
             type: string
-          user:
-            type: object
-            properties:
-              id:
-                type: string
     finishFirstTriviaRoundDto:
       payload:
         type: object
         properties:
           result:
             type: number
-          user:
-            type: object
-            properties:
-              id:
-                type: string
     finishSecondTriviaRoundDto:
       payload:
         type: object
@@ -405,36 +387,18 @@ components:
     startClassificationDto:
       payload:
         type: object
-        properties:
-          user:
-            type: object
-            properties:
-              id:
-                type: string
-              Authorization:
-                type: string
     voteClassificationCategoryDto:
       payload:
         type: object
         properties:
           category:
             type: string
-          user:
-            type: object
-            properties:
-              id:
-                type: string
     finishFirstClassificationRoundDto:
       payload:
         type: object
         properties:
           result:
             type: number
-          user:
-            type: object
-            properties:
-              id:
-                type: string
     finishSecondClassificationRoundDto:
       payload:
         type: object
@@ -571,4 +535,3 @@ components:
                 type: string
               powerup:
                 type: number
-
