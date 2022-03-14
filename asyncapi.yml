@@ -170,7 +170,81 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/classificationUserClaimedPowerupDto'
-     
+  #match
+  #publish
+  match/createMatch:
+    publish:
+      message:
+        $ref: '#/components/messages/createMatchDto'
+  match/joinMatch:
+    publish:
+      message:
+        $ref: '#/components/messages/joinMatchDto'
+  match/startMatch:
+    publish:
+      message:
+        $ref: '#/components/messages/startMatchDto'
+  match/voteMatchCategory:
+    publish:
+      message:
+        $ref: '#/components/messages/voteMatchCategoryDto'
+  match/finishFirstMatchRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishFirstMatchRoundDto'
+  match/finishSecondMatchRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishSecondMatchRoundDto'
+  match/finishThirdMatchRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishThirdMatchRoundDto'
+  match/claimMatchPowerup:
+    publish:
+      message:
+        $ref: '#/components/messages/claimMatchPowerupDto'
+  #subscribe
+  match/matchUserJoined:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchUserJoinedDto'
+  match/matchUserDisconnected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchUserDisconnectedDto'
+  match/matchCategoriesRandomized:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchCategoriesRandomizedDto'
+  match/matchStarted:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchStartedDto'
+  match/matchCategorySelected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchCategorySelectedDto'
+  match/matchUserFinishedFirstRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchUserFinishedFirstRoundDto'
+  match/matchUserFinishedSecondRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchUserFinishedSecondRoundDto'
+  match/matchUserFinishedThirdRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchUserFinishedThirdRoundDto'
+  match/matchConnectedUsersNumberUpdated:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchConnectedUsersNumberUpdatedDto'
+  match/matchUserClaimedPowerup:
+    subscribe:
+      message:
+        $ref: '#/components/messages/matchUserClaimedPowerupDto'
         
 components:
   messages:
@@ -525,6 +599,181 @@ components:
               connectedUsersNumber:
                 type: number
     classificationUserClaimedPowerupDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              powerup:
+                type: number
+    #match
+    #publish
+    createMatchDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          match:
+            type: object
+            properties:
+              id:
+                type: string
+              numberLimitUsers:
+                type: number
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    joinMatchDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    startMatchDto:
+      payload:
+        type: object        
+    voteMatchCategoryDto:
+      payload:
+        type: object
+        properties:
+          category:
+            type: string
+    finishFirstMatchRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishSecondMatchRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishThirdMatchRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishFourthMatchRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    claimMatchPowerupDto:
+      payload:
+        type: object
+        properties:
+          powerup:
+            type: number
+    #suscribe
+    matchUserJoinedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              enterprise:
+                type: string
+    matchUserDisconnectedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    matchCategoriesRandomizedDto:
+      payload:
+        type: object
+        properties:
+          categories:
+            type: array
+            items:
+              type: 
+                string
+    matchStartedDto:
+      payload:
+        type: object
+        properties:
+          match:
+            type: object
+            properties:
+              status:
+                type: string
+    matchCategorySelectedDto:
+      payload:
+        type: object
+        properties:
+          match:
+            type: object
+            properties:
+              category:
+                type: string
+    matchUserFinishedFirstRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    matchUserFinishedSecondRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    matchUserFinishedThirdRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    matchConnectedUsersNumberUpdatedDto:
+      payload:
+        type: object
+        properties:
+          match:
+            type: object
+            properties:
+              connectedUsersNumber:
+                type: number
+    matchUserClaimedPowerupDto:
       payload:
         type: object
         properties:
