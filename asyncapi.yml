@@ -310,12 +310,6 @@ components:
         properties:
           result:
             type: number
-    finishFourthTriviaRoundDto:
-      payload:
-        type: object
-        properties:
-          result:
-            type: number
     claimTriviaPowerupDto:
       payload:
         type: object
@@ -666,12 +660,6 @@ components:
           result:
             type: number
     finishThirdMatchRoundDto:
-      payload:
-        type: object
-        properties:
-          result:
-            type: number
-    finishFourthMatchRoundDto:
       payload:
         type: object
         properties:
