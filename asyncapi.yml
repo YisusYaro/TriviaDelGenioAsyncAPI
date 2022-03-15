@@ -245,7 +245,74 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/matchUserClaimedPowerupDto'
-        
+  #mix
+  #publish
+  mix/createMix:
+    publish:
+      message:
+        $ref: '#/components/messages/createMixDto'
+  mix/joinMix:
+    publish:
+      message:
+        $ref: '#/components/messages/joinMixDto'
+  mix/startMix:
+    publish:
+      message:
+        $ref: '#/components/messages/startMixDto'
+  mix/voteMixCategory:
+    publish:
+      message:
+        $ref: '#/components/messages/voteMixCategoryDto'
+  mix/finishFirstMixRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishFirstMixRoundDto'
+  mix/finishSecondMixRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishSecondMixRoundDto'
+  mix/finishThirdMixRound:
+    publish:
+      message:
+        $ref: '#/components/messages/finishThirdMixRoundDto'
+  #subscribe
+  mix/mixUserJoined:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixUserJoinedDto'
+  mix/mixUserDisconnected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixUserDisconnectedDto'
+  mix/mixCategoriesRandomized:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixCategoriesRandomizedDto'
+  mix/mixStarted:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixStartedDto'
+  mix/mixCategorySelected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixCategorySelectedDto'
+  mix/mixUserFinishedFirstRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixUserFinishedFirstRoundDto'
+  mix/mixUserFinishedSecondRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixUserFinishedSecondRoundDto'
+  mix/mixUserFinishedThirdRound:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixUserFinishedThirdRoundDto'
+  mix/mixConnectedUsersNumberUpdated:
+    subscribe:
+      message:
+        $ref: '#/components/messages/mixConnectedUsersNumberUpdatedDto'
+
 components:
   messages:
     #trivia
@@ -771,4 +838,161 @@ components:
               id:
                 type: string
               powerup:
+                type: number
+    #mix
+    #publish
+    createMixDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          mix:
+            type: object
+            properties:
+              id:
+                type: string
+              numberLimitUsers:
+                type: number
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    joinMixDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    startMixDto:
+      payload:
+        type: object        
+    voteMixCategoryDto:
+      payload:
+        type: object
+        properties:
+          category:
+            type: string
+    finishFirstMixRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishSecondMixRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    finishThirdMixRoundDto:
+      payload:
+        type: object
+        properties:
+          result:
+            type: number
+    #suscribe
+    mixUserJoinedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              enterprise:
+                type: string
+    mixUserDisconnectedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    mixCategoriesRandomizedDto:
+      payload:
+        type: object
+        properties:
+          mix:
+            type: object
+            properties:
+              categories:
+                  type: array
+                  items:
+                    type: 
+                      string
+              game:
+                type: string
+    mixStartedDto:
+      payload:
+        type: object
+        properties:
+          mix:
+            type: object
+            properties:
+              status:
+                type: string
+    mixCategorySelectedDto:
+      payload:
+        type: object
+        properties:
+          mix:
+            type: object
+            properties:
+              category:
+                type: string
+    mixUserFinishedFirstRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    mixUserFinishedSecondRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    mixUserFinishedThirdRoundDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              result:
+                type: number
+    mixConnectedUsersNumberUpdatedDto:
+      payload:
+        type: object
+        properties:
+          mix:
+            type: object
+            properties:
+              connectedUsersNumber:
                 type: number
