@@ -323,6 +323,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'trivia'
           trivia:
             type: object
             properties:
@@ -343,6 +346,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'trivia'
           user:
             type: object
             properties:
@@ -492,6 +498,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'classification'
           classification:
             type: object
             properties:
@@ -512,6 +521,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'classification'
           user:
             type: object
             properties:
@@ -678,6 +690,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'match'
           match:
             type: object
             properties:
@@ -698,6 +713,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'match'
           user:
             type: object
             properties:
@@ -847,6 +865,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'mix'
           mix:
             type: object
             properties:
@@ -867,6 +888,9 @@ components:
         properties:
           enterprise:
             type: string
+          game:
+            type: string
+            default: 'mix'
           user:
             type: object
             properties:
