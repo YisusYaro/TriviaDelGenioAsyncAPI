@@ -312,6 +312,42 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/mixConnectedUsersNumberUpdatedDto'
+  #tournament
+  #publish
+  tournament/createTournament:
+    publish:
+      message:
+        $ref: '#/components/messages/createTournamentDto'
+  tournament/joinTournament:
+    publish:
+      message:
+        $ref: '#/components/messages/joinTournamentDto'
+  tournament/startTournament:
+    publish:
+      message:
+        $ref: '#/components/messages/startTournamentDto'
+  #subscribe
+  tournament/tournamentUserJoined:
+    subscribe:
+      message:
+        $ref: '#/components/messages/tournamentUserJoinedDto'
+  tournament/tournamentUserDisconnected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/tournamentUserDisconnectedDto'
+  tournament/tournamentStarted:
+    subscribe:
+      message:
+        $ref: '#/components/messages/tournamentStartedDto'
+  tournament/tournamentConnectedUsersNumberUpdated:
+    subscribe:
+      message:
+        $ref: '#/components/messages/tournamentConnectedUsersNumberUpdatedDto'
+  tournament/tournamentUsersClashDefined:
+    subscribe:
+      message:
+        $ref: '#/components/messages/tournamentUsersClashDefinedDto'
+
 
 components:
   messages:
@@ -1020,3 +1056,109 @@ components:
             properties:
               connectedUsersNumber:
                 type: number
+    #tournament
+    #publish
+    createTournamentDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          game:
+            type: string
+            default: 'tournament'
+          tournament:
+            type: object
+            properties:
+              id:
+                type: string
+              numberLimitUsers:
+                type: number
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    joinTournamentDto:
+      payload:
+        type: object
+        properties:
+          enterprise:
+            type: string
+          game:
+            type: string
+            default: 'tournament'
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              Authorization:
+                type: string
+    startTournamentDto:
+      payload:
+        type: object        
+    #suscribe
+    tournamentUserJoinedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+              enterprise:
+                type: string
+    tournamentUserDisconnectedDto:
+      payload:
+        type: object
+        properties:
+          user:
+            type: object
+            properties:
+              id:
+                type: string
+    tournamentStartedDto:
+      payload:
+        type: object
+        properties:
+          tournament:
+            type: object
+            properties:
+              status:
+                type: string
+    tournamentConnectedUsersNumberUpdatedDto:
+      payload:
+        type: object
+        properties:
+          tournament:
+            type: object
+            properties:
+              connectedUsersNumber:
+                type: number
+    tournamentUsersClashDefinedDto:
+      payload:
+        type: object
+        properties:
+          clash:
+            type: object
+            properties:
+              id:
+                type: string
+              users:
+                type: array
+                items:
+                  type: 
+                    string
+              branch:
+                type: string
+              game:
+                type: string
+              categories:
+                type: array
+                items:
+                  type: 
+                    string
