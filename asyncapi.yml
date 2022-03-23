@@ -326,6 +326,10 @@ channels:
     publish:
       message:
         $ref: '#/components/messages/startTournamentDto'
+  tournament/voteTournamentClashCategory:
+    publish:
+      message:
+        $ref: '#/components/messages/voteTournamentClashCategoryDto'
   #subscribe
   tournament/tournamentUserJoined:
     subscribe:
@@ -347,6 +351,10 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/tournamentUsersClashDefinedDto'
+  tournament/tournamentClashCategorySelected:
+    subscribe:
+      message:
+        $ref: '#/components/messages/tournamentClashCategorySelectedDto'
 
 
 components:
@@ -1099,7 +1107,15 @@ components:
                 type: string
     startTournamentDto:
       payload:
-        type: object        
+        type: object
+    voteTournamentClashCategoryDto:
+      payload:
+        type: object
+        properties:
+          clash:
+            type: string
+          category: 
+            type: string
     #suscribe
     tournamentUserJoinedDto:
       payload:
@@ -1162,3 +1178,14 @@ components:
                 items:
                   type: 
                     string
+    tournamentClashCategorySelectedDto:
+      payload:
+        type: object
+        properties:
+          clash:
+            type: object
+            properties:
+              id:
+                type: string
+              category:
+                type: string
