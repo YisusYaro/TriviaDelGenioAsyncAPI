@@ -359,10 +359,10 @@ channels:
     subscribe:
       message:
         $ref: '#/components/messages/tournamentClashCategorySelectedDto'
-  tournament/tournamentUserWonClash:
+  tournament/tournamentClashFinished:
     subscribe:
       message:
-        $ref: '#/components/messages/tournamentUserWonClashDto'
+        $ref: '#/components/messages/tournamentClashFinishedDto'
 
 
 components:
@@ -1205,7 +1205,7 @@ components:
                 type: string
               category:
                 type: string
-    tournamentUserWonClashDto:
+    tournamentClashFinishedDto:
       payload:
         type: object
         properties:
@@ -1215,6 +1215,18 @@ components:
               id:
                 type: string
               winner:
-                type: string
+                type: object
+                properties:
+                  id:
+                    type: string
+                  result: 
+                    type: number
+              loser:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  result: 
+                    type: number
               branch:
                 type: string
